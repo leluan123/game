@@ -1,0 +1,34 @@
+{
+  "name": "Game English - Học tiếng Anh qua trò chơi",
+  "short_name": "Game English",
+  "description": "Học tiếng Anh qua trò chơi - Bộ sưu tập các game học ngôn ngữ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f0f4ff",
+  "theme_color": "#6c63ff",
+  "lang": "vi",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "games"],
+  "prefer_related_applications": false
+}
