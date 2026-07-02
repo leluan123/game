@@ -138,9 +138,17 @@ class Analytics {
         totalCorrect: stats.totalCorrect || 0
       };
 
-      const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-      navigator.sendBeacon(Analytics.SHEETS_WEB_APP_URL, blob);
-      console.log('[Analytics] Logged progress to Sheets:', payload);
+      // Use fetch with no-cors to avoid CORS preflight issues
+      fetch(Analytics.SHEETS_WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        console.log('[Analytics] Logged progress to Sheets:', payload);
+      }).catch((err) => {
+        console.error('[Analytics] Failed to log progress:', err);
+      });
     } catch (e) {
       console.error('[Analytics] Failed to log progress:', e);
     }
@@ -175,20 +183,17 @@ class Analytics {
       totalCorrect: data.totalCorrect || 0
     };
 
-    // Use sendBeacon for reliability (works even when page is closing)
-    try {
-      const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-      navigator.sendBeacon(Analytics.SHEETS_WEB_APP_URL, blob);
+    // Use fetch with no-cors to avoid CORS preflight issues
+    fetch(Analytics.SHEETS_WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(() => {
       console.log('[Analytics] Logged to Sheets:', payload);
-    } catch (e) {
-      // Fallback to fetch
-      fetch(Analytics.SHEETS_WEB_APP_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(() => {});
-    }
+    }).catch((err) => {
+      console.error('[Analytics] Failed to log to Sheets:', err);
+    });
   }
 
   /**
