@@ -131,4 +131,4 @@ node generate-icons.js
 
 ## 📝 License
 
-Created by **Le Luan**"# game" 
+Created by **Le Luan**

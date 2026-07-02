@@ -58,6 +58,12 @@ class Game {
       Analytics.startSession();
       Analytics.trackEvent('page_view', { page: 'wordtype_game' });
 
+      // Load saved Sheets URL from localStorage
+      const savedUrl = localStorage.getItem('gameenglish_sheets_url');
+      if (savedUrl) {
+        Analytics.SHEETS_WEB_APP_URL = savedUrl;
+      }
+
       document.querySelector('.btn-primary').textContent = 'Loading...';
       await Promise.all([
         this.levelManager.loadAllLevels(),
@@ -87,6 +93,11 @@ class Game {
       };
       document.addEventListener('click', resumeAudio);
       document.addEventListener('touchstart', resumeAudio);
+
+      // Log progress when page is closed/refreshed
+      window.addEventListener('beforeunload', () => {
+        Analytics.logCurrentProgress(this.GAME_ID);
+      });
 
       console.log('Game initialized successfully');
     } catch (e) {
@@ -124,6 +135,7 @@ class Game {
 
     // Back to Hub
     document.getElementById('btn-back-to-hub').addEventListener('click', () => {
+      Analytics.logCurrentProgress(this.GAME_ID);
       window.location.href = '../../index.html';
     });
 
@@ -158,6 +170,9 @@ class Game {
     const updatedStats = Storage.load(this.GAME_ID);
     this.ui.updateMenu(updatedStats);
     this.ui.showScreen('menu');
+
+    // Log progress when exiting to menu
+    Analytics.logCurrentProgress(this.GAME_ID);
   }
 
   _showLevelsScreen() {
