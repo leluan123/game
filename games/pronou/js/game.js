@@ -9,7 +9,7 @@ const Game = {
    * Initialize the game
    */
   init() {
-    console.log('[Game] Initializing Pronou...');
+    console.log('[Game] Initializing Pronunciation Test...');
     
     // Initialize all modules
     Audio.init();
@@ -31,7 +31,7 @@ const Game = {
     // Track page view
     Analytics.trackEvent('pronou_page_view');
     
-    console.log('[Game] Pronou initialized successfully');
+    console.log('[Game] Pronunciation Test initialized successfully');
   },
 
   /**
