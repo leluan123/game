@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 // Rename in HTML
-let html = fs.readFileSync('games/pronou/pronou.html', 'utf8');
+let html = fs.readFileSync('games/pronou/Pronunciation.html', 'utf8');
 html = html.replace(/Pronou/g, 'Pronunciation Test');
-fs.writeFileSync('games/pronou/pronou.html', html);
+fs.writeFileSync('games/pronou/Pronunciation.html', html);
 console.log('HTML renamed');
 
 // Rename in game.js

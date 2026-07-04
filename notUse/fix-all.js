@@ -88,12 +88,12 @@ fs.writeFileSync('games/pronou/js/score.js', s);
 console.log('3. Score.js: combo removed');
 
 // ===== 4. Fix HTML - update combo display label =====
-let h = fs.readFileSync('games/pronou/pronou.html', 'utf8');
+let h = fs.readFileSync('games/pronou/Pronunciation.html', 'utf8');
 h = h.replace(
   '<span class="combo-label">Combo</span>',
   '<span class="combo-label" id="combo-label">Accuracy</span>'
 );
-fs.writeFileSync('games/pronou/pronou.html', h);
+fs.writeFileSync('games/pronou/Pronunciation.html', h);
 console.log('4. HTML: combo label updated');
 
 console.log('\nAll fixes applied!');
