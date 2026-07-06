@@ -1,0 +1,6 @@
+@echo off
+echo Renaming folder and files...
+node rename-folder.js
+echo.
+echo Done! Press any key to exit...
+pause >nul
